@@ -1,7 +1,6 @@
 library(dplyr)
 library(lubridate)
 
-par(mfcol=c(2,2))
 
 fileURL <- "https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2Fhousehold_power_consumption.zip"
 download.file(fileURL,"household_power_consumption.zip")
@@ -20,6 +19,8 @@ data <- data_read %>%
          datetime<=ymd_hms("2007-02-02 23:59:00",locale=Sys.getlocale("LC_TIME"))) %>%
   select(-(Date:Time))
 
+png("plot4.png",width=480,height=480)
+par(mfcol=c(2,2))
 ### plot upper left ###
 with(data, plot(datetime, Global_active_power,
                 ylab="Global Active Power (kilowatts)",
@@ -48,3 +49,5 @@ with(data, lines(datetime, Voltage))
 ### plot lower right ###
 with(data, plot(datetime, Global_reactive_power, type="n"))
 with(data, lines(datetime, Global_reactive_power))
+
+dev.off()
