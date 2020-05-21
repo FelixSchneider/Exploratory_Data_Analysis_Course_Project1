@@ -2,11 +2,11 @@ library(dplyr)
 library(lubridate)
 
 fileURL <- "https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2Fhousehold_power_consumption.zip"
-download.file(fileURL,"./data/household_power_consumption.zip")
-unzip("./data/household_power_consumption.zip",exdir="./data")
+download.file(fileURL,"household_power_consumption.zip")
+unzip("household_power_consumption.zip")
 
 Sys.setlocale("LC_ALL","English_US")
-data_read <- read.table("./data/household_power_consumption.txt",
+data_read <- read.table("household_power_consumption.txt",
                    header=TRUE,
                    sep=";",
                    nrows=2075300,
@@ -19,6 +19,7 @@ data <- data_read %>%
          DateTime<=ymd_hms("2007-02-02 23:59:00",locale=Sys.getlocale("LC_TIME"))) %>%
   select(-(Date:Time))
 
+par(mfrow=c(1,1))
 with(data, plot(DateTime, Sub_metering_1,
                 ylab="Energy sub metering",
                 xlab="",

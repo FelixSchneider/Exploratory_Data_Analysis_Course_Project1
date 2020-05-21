@@ -4,10 +4,10 @@ library(lubridate)
 par(mfcol=c(2,2))
 
 fileURL <- "https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2Fhousehold_power_consumption.zip"
-download.file(fileURL,"./data/household_power_consumption.zip")
-unzip("./data/household_power_consumption.zip",exdir="./data")
+download.file(fileURL,"household_power_consumption.zip")
+unzip("household_power_consumption.zip")
 
-data_read <- read.table("./data/household_power_consumption.txt",
+data_read <- read.table("household_power_consumption.txt",
                         header=TRUE,
                         sep=";",
                         nrows=2075300,
