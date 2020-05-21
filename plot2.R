@@ -19,6 +19,7 @@ data <- data_read %>%
          DateTime<=ymd_hms("2007-02-02 23:59:00",locale=Sys.getlocale("LC_TIME"))) %>%
   select(-(Date:Time))
 
+png("plot2.png",width=480,height=480)
 par(mfrow=c(1,1))
 with(data, plot(DateTime, Global_active_power,
                 ylab="Global Active Power (kilowatts)",
@@ -26,5 +27,6 @@ with(data, plot(DateTime, Global_active_power,
                 type="n"
                 )
      )
-
 with(data, lines(DateTime, Global_active_power))
+
+dev.off()
